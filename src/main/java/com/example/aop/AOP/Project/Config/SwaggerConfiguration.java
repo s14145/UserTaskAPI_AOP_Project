@@ -17,8 +17,6 @@ public class SwaggerConfiguration {
     /**
      * Docket bean in Swagger gives the convenience way to define your defaults configuration for your Swagger
      *
-     *
-     *
      * @return
      */
     @Bean
