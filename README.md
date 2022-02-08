@@ -6,3 +6,4 @@ This User Task API make use of below technologies:
 3. Swagger
 4. H2 in-memory database
 5. Maven build tool
+6. SonarQube Tool (Static Code Analysis)
