@@ -1,4 +1,4 @@
-# UserTaskAPI AOP Project
+# User Task API AOP Project
 
 This User Task API make use of below technologies:
 1. Spring Boot
