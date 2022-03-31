@@ -63,7 +63,7 @@ public class TaskMapper {
         }
     }
 
-    public List<Task> convertToTaskList(List<TaskDetails> taskList){
-        return taskList.stream().map(task->convertToTaskDto(task)).collect(Collectors.toList());
+    public List<Task> convertToTaskList(List<TaskDetails> taskDetailsList){
+        return taskDetailsList.stream().map(task->convertToTaskDto(task)).collect(Collectors.toList());
     }
 }

@@ -10,17 +10,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.Clock;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service("taskService")
 public class TaskServiceImpl implements TaskService {
 
-    @Autowired
-    private TaskMapper taskMapper;
+    private final TaskMapper taskMapper;
+    private final TaskRepository taskRepository;
+    //private Clock clock;
 
-    @Autowired
-    private TaskRepository taskRepository;
+    public TaskServiceImpl(TaskMapper taskMapper, TaskRepository taskRepository) {
+        this.taskMapper = taskMapper;
+        this.taskRepository = taskRepository;
+        //this.clock = clock;
+    }
 
     @Override
     @Transactional
@@ -33,6 +39,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     @Transactional
     public void deleteTask(Long id) {
+        //LocalDate.now(clock);
 
         Optional<TaskDetails> taskDetails = taskRepository.findById(id);
 
@@ -46,12 +53,14 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task getTask(Long id) {
-        Optional<TaskDetails> taskDetails = taskRepository.findById(id);
-
-        if(taskDetails.isPresent()){
-           return taskMapper.convertToTaskDto(taskDetails.get());
-        }
-        throw new TaskException(HttpStatus.NOT_FOUND,"Task Not found with " + id);
+        Task taskDetails = taskRepository.findById(id)
+                .map(taskMapper::convertToTaskDto)
+                .orElseThrow(() -> new TaskException(HttpStatus.NOT_FOUND,"Task Not found with " + id));
+        return taskDetails;
+        //if(taskDetails.isPresent()){
+        //   return taskMapper.convertToTaskDto(taskDetails.get());
+        //}
+        //throw new TaskException(HttpStatus.NOT_FOUND,"Task Not found with " + id);
     }
 
     @Override
@@ -70,7 +79,8 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> getAllTasks() {
         try {
-            return taskMapper.convertToTaskList(taskRepository.findAll());
+            List<Task> tasks = taskMapper.convertToTaskList(taskRepository.findAll());
+            return tasks;
         }catch(Exception ex){
             ex.printStackTrace();
             throw new TaskException(HttpStatus.NOT_FOUND, "No Task Found");

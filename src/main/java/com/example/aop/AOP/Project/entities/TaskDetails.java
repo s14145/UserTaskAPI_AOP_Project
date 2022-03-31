@@ -3,6 +3,7 @@ package com.example.aop.AOP.Project.entities;
 import com.example.aop.AOP.Project.model.TaskStatus;
 
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -23,6 +24,7 @@ public class TaskDetails {
     private Date startDate;
 
     @Column(name="END_DATE")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
 
     @Enumerated(EnumType.STRING)
@@ -74,5 +76,23 @@ public class TaskDetails {
 
     public void setTaskStatus(TaskStatus taskStatus) {
         this.taskStatus = taskStatus;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TaskDetails that = (TaskDetails) o;
+        return id == that.id &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(startDate, that.startDate) &&
+                Objects.equals(endDate, that.endDate) &&
+                taskStatus == that.taskStatus;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, description, startDate, endDate, taskStatus);
     }
 }

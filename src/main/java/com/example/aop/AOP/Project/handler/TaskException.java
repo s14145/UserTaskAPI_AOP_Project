@@ -1,11 +1,17 @@
 package com.example.aop.AOP.Project.handler;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+//@ResponseStatus(HttpStatus.NOT_FOUND) - This can be used instead of HttpStatus variable here
 public class TaskException extends RuntimeException {
 
     private String message;
-    private HttpStatus httpStatus;
+    public HttpStatus httpStatus;
+
+    public TaskException(){
+        super();
+    }
 
     public TaskException(String message){
         super();
@@ -17,20 +23,14 @@ public class TaskException extends RuntimeException {
         this.message = message;
     }
 
-    @Override
-    public String getMessage() {
-        return message;
+    public TaskException(Throwable cause){
+        super(cause);
     }
 
-    public void setMessage(String message) {
+    public TaskException(HttpStatus httpStatus, String message, Throwable cause){
+        super(cause);
+        this.httpStatus = httpStatus;
         this.message = message;
     }
 
-    public HttpStatus getHttpStatus() {
-        return httpStatus;
-    }
-
-    public void setHttpStatus(HttpStatus httpStatus) {
-        this.httpStatus = httpStatus;
-    }
 }

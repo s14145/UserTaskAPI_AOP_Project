@@ -19,9 +19,13 @@ public class Task {
 
     @ApiModelProperty(notes = "Title of the task", name = "title", required = true, value = "Cleaning")
     private String title;
+
     private String Description;
+
     private Date startDate;
+
     private Date endDate;
+
     private TaskStatus taskStatus;
 
 }

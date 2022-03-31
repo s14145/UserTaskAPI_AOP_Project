@@ -4,6 +4,6 @@ import com.example.aop.AOP.Project.entities.TaskDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("taskRepository")
 public interface TaskRepository extends JpaRepository<TaskDetails, Long> {
 }

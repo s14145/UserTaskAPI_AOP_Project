@@ -29,7 +29,8 @@ public class TaskController {
             @ApiResponse(code = 200, message = "SUCCESS", response = Task.class),
             @ApiResponse(code = 401, message = "UNAUTHORIZED", response = ErrorResponse.class),
             @ApiResponse(code = 403, message = "FORBIDDEN", response = ErrorResponse.class),
-            @ApiResponse(code = 404, message = "NOT FOUND", response = ErrorResponse.class)
+            @ApiResponse(code = 404, message = "NOT FOUND", response = ErrorResponse.class),
+            @ApiResponse(code = 500, message = "INTERNAL SERVER ERROR", response = ErrorResponse.class)
     })
     @PostMapping(value="/createTask",produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Task> createTask(@ApiParam(value = "TASK") @Valid @RequestBody Task task){
