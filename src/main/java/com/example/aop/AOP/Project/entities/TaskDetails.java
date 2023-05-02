@@ -2,7 +2,7 @@ package com.example.aop.AOP.Project.entities;
 
 import com.example.aop.AOP.Project.model.TaskStatus;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -14,18 +14,17 @@ public class TaskDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name="TITLE")
+    @Column(name="TITLE", updatable = true, insertable = true)
     private String title;
 
     @Column(name="DESCRIPTION")
     private String description;
 
-    @Column(name="START_DATE")
-    private Date startDate;
+    @Column(name="START_DATE", nullable = false)
+    private LocalDate startDate;
 
-    @Column(name="END_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date endDate;
+    @Column(name="END_DATE", nullable = false)
+    private LocalDate endDate;
 
     @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus;
@@ -54,19 +53,19 @@ public class TaskDetails {
         this.description = description;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

@@ -16,4 +16,6 @@ public interface TaskService {
     public Task updateTask(Long id,Task task);
 
     public List<Task> getAllTasks();
+
+    public String evictCache();
 }

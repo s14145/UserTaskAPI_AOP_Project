@@ -3,7 +3,7 @@ package com.example.aop.AOP.Project.handler;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-//@ResponseStatus(HttpStatus.NOT_FOUND) - This can be used instead of HttpStatus variable here
+//@ResponseStatus(value = HttpStatus.NOT_FOUND) - This can be used instead of HttpStatus variable here
 public class TaskException extends RuntimeException {
 
     private String message;
