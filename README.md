@@ -26,12 +26,24 @@ This User Task API makes use of below technologies:
 + Transaction Management
 + Caching
 + ETags (Entity Tags)
++ Spring Boot Actuator
 
 Swagger 2 URI: http://localhost:7070/swagger-ui/index.html
 
 H2 Database URI: http://localhost:7070/h2-console/
 
 H2 database is initialized with some data by using data.sql file
+
+**Some Spring Boot Actuator Endpoints are:**
+
++ Health Endpoint: http://localhost:7070/actuator/health
+
++ Bean Endpoint: http://localhost:7070/actuator/beans
+
++ Env Endpoint: http://localhost:7070/actuator/env
+
++ Thread Dump Endpoint: http://localhost:7070/actuator/threaddump
+
 
 **Request Payload:**
 
