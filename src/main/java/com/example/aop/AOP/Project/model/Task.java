@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,7 @@ import java.time.LocalDate;
 @EqualsAndHashCode
 @ApiModel(description = "Task Model")
 @CompareDate(before = "startDate", after =  "endDate", message = "The start date must be before end date.")
+@Component
 public class Task {
 
     @ApiModelProperty(notes = "ID of the task", name = "id", required = true, value = "234567")

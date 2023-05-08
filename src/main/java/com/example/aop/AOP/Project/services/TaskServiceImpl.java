@@ -16,7 +16,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Service("taskService")
+@Service("TaskService")
 @Slf4j
 public class TaskServiceImpl implements TaskService {
 
