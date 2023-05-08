@@ -1,7 +1,7 @@
 package com.example.aop.AOP.Project.services;
 
 import com.example.aop.AOP.Project.entities.TaskDetails;
-import com.example.aop.AOP.Project.handler.TaskException;
+import com.example.aop.AOP.Project.exception.TaskException;
 import com.example.aop.AOP.Project.mapper.TaskMapper;
 import com.example.aop.AOP.Project.model.Task;
 import com.example.aop.AOP.Project.repository.TaskRepository;
@@ -37,7 +37,7 @@ public class TaskServiceImpl implements TaskService {
         log.info("Entering method name: {}", method_GetTask);
         Task taskDetails = taskRepository.findById(id)
                 .map(taskMapper::convertToTaskDto)
-                .orElseThrow(() -> new TaskException(HttpStatus.NOT_FOUND,"Task Not found with " + id));
+                .orElseThrow(() -> new TaskException("Task Not found with " + id, HttpStatus.NOT_FOUND));
         log.info("Exiting method name: {}", method_GetTask);
         return taskDetails;
         //if(taskDetails.isPresent()){
@@ -53,7 +53,7 @@ public class TaskServiceImpl implements TaskService {
             return tasks;
         }catch(Exception ex){
             log.error("Error message: {}", ex);
-            throw new TaskException(HttpStatus.NOT_FOUND, "No Task Found");
+            throw new TaskException("No Task Found", ex, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -88,7 +88,7 @@ public class TaskServiceImpl implements TaskService {
             taskDetailsUpdate.setTaskStatus(task.getTaskStatus());
             return taskMapper.convertToTaskDto(taskRepository.save(taskDetailsUpdate));
         }
-        throw new TaskException(HttpStatus.NOT_FOUND,"No Task Found with Id " + id);
+        throw new TaskException("No Task Found with Id " + id, HttpStatus.NOT_FOUND);
     }
 
     @Override
@@ -101,7 +101,7 @@ public class TaskServiceImpl implements TaskService {
         Optional<TaskDetails> taskDetails = taskRepository.findById(id);
 
         if(!taskDetails.isPresent()){
-            throw new TaskException(HttpStatus.NOT_FOUND,"Task Not Found with " + id);
+            throw new TaskException("Task Not Found with " + id, HttpStatus.NOT_FOUND);
         }
 
         TaskDetails task = taskDetails.get();

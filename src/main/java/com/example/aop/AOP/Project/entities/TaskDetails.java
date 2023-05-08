@@ -12,12 +12,13 @@ public class TaskDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "taskDetails_id", updatable = false)
     private long id;
 
-    @Column(name="TITLE", updatable = true, insertable = true)
+    @Column(name="TITLE", nullable = false)
     private String title;
 
-    @Column(name="DESCRIPTION")
+    @Column(name="DESCRIPTION", nullable = false)
     private String description;
 
     @Column(name="START_DATE", nullable = false)
@@ -27,7 +28,11 @@ public class TaskDetails {
     private LocalDate endDate;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "task_status", nullable = false)
     private TaskStatus taskStatus;
+
+    public TaskDetails() {
+    }
 
     public long getId() {
         return id;

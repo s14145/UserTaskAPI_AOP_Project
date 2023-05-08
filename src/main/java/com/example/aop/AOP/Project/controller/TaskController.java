@@ -1,6 +1,6 @@
 package com.example.aop.AOP.Project.controller;
 
-import com.example.aop.AOP.Project.handler.ErrorResponse;
+import com.example.aop.AOP.Project.error.ErrorResponse;
 import com.example.aop.AOP.Project.model.Task;
 import com.example.aop.AOP.Project.services.TaskService;
 import io.swagger.annotations.ApiOperation;
@@ -93,7 +93,7 @@ public class TaskController {
     @DeleteMapping(value = "/tasks/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteTask(@ApiParam(value = "Task ID", required = true) @PathVariable Long id) {
         taskService.deleteTask(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @ApiOperation(value = "Clear All Caches", response = Task.class)

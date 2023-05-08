@@ -1,4 +1,4 @@
-package com.example.aop.AOP.Project.handler;
+package com.example.aop.AOP.Project.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -14,23 +14,24 @@ public class TaskException extends RuntimeException {
     }
 
     public TaskException(String message){
-        super();
-        this.message = message;
+        super(message);
     }
 
-    public TaskException(HttpStatus httpStatus,String message){
+    public TaskException(String message, HttpStatus httpStatus){
+        super(message);
         this.httpStatus = httpStatus;
-        this.message = message;
     }
 
     public TaskException(Throwable cause){
         super(cause);
     }
 
-    public TaskException(HttpStatus httpStatus, String message, Throwable cause){
-        super(cause);
-        this.httpStatus = httpStatus;
-        this.message = message;
+    public TaskException(String message, Throwable cause){
+        super(message, cause);
     }
 
+    public TaskException(String message, Throwable cause, HttpStatus httpStatus){
+        super(message, cause);
+        this.httpStatus = httpStatus;
+    }
 }

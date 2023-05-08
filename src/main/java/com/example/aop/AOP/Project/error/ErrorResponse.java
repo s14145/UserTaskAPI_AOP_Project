@@ -1,4 +1,4 @@
-package com.example.aop.AOP.Project.handler;
+package com.example.aop.AOP.Project.error;
 
 import java.io.Serializable;
 

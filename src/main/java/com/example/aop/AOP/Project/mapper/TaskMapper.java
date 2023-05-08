@@ -2,6 +2,7 @@ package com.example.aop.AOP.Project.mapper;
 
 import com.example.aop.AOP.Project.entities.TaskDetails;
 import com.example.aop.AOP.Project.model.Task;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@Slf4j
 public class TaskMapper {
 
     public TaskDetails convertToTaskDetails(Task task){
@@ -45,6 +47,7 @@ public class TaskMapper {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             return simpleDateFormat.parse(date);
         }catch(ParseException ex){
+            log.error("Exception: " + ex);
             ex.printStackTrace();
             return null;
         }
@@ -58,6 +61,7 @@ public class TaskMapper {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             return simpleDateFormat.format(date);
         }catch(Exception ex){
+            log.error("Exception: " + ex);
             ex.printStackTrace();
             return null;
         }
